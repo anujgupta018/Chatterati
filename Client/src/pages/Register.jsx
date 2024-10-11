@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Logo from "../assets/logo.svg";
 
 export default function Register() {
   const handleSubmit = (event) => {
@@ -9,11 +10,13 @@ export default function Register() {
   const handleChange = (e) => {};
   return (
     <>
-      <div>
+      <div className="flex h-[100vh] w-full flex-col justify-center gap-1 items-center bg-customDark">
         <form onSubmit={(event) => handleSubmit(event)}>
-          <div>
-            <img src="" />
-            <h2>Chatterati</h2>
+          <div className="flex items-center justify-center gap-1">
+            <img src={Logo} alt="ChatteratiLogo" className="h-20" />
+            <h2 className="text-white uppercase text-3xl font-bold">
+              Chatterati
+            </h2>
           </div>
           <input
             type="text"
