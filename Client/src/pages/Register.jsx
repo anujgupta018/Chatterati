@@ -1,13 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/logo.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 export default function Register() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert("form");
+  const [values, setValues] = useState({
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const toastOptions = {
+    position: "bottom-right",
+    autoClose: 8000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
   };
-  const handleChange = (e) => {};
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (handleValidation()) {
+      const { username, password, confirmPassword, email } = values;
+      const { data } = axios.post();
+    }
+  };
+  const handleValidation = () => {
+    const { username, password, confirmPassword, email } = values;
+
+    if (username.length < 3) {
+      toast.error("Username length should be greater than 3", toastOptions);
+      return false;
+    } else if (email === "") {
+      toast.error("Email is required", toastOptions);
+      return false;
+    } else if (password !== confirmPassword) {
+      toast.error("Password and Confirm Password do not match", toastOptions);
+      return false;
+    } else if (password.length < 8) {
+      toast.error(
+        "Password should be greater than or equal to 8 characters",
+        toastOptions
+      );
+      return false;
+    }
+    return true;
+  };
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
   return (
     <>
       <div className="flex h-[100vh] w-full flex-col justify-center gap-1 items-center bg-customDark">
@@ -63,6 +105,7 @@ export default function Register() {
             </Link>
           </span>
         </form>
+        <ToastContainer />
       </div>
     </>
   );
