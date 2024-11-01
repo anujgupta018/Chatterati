@@ -57,7 +57,7 @@ export default function Register() {
   };
   return (
     <>
-      <div className="flex h-[100vh] w-full flex-col justify-center gap-1 items-center bg-customDark">
+      <div className="flex h-[100vh] w-full lg:p-10 flex-col justify-center gap-1 items-center bg-customDark">
         <form
           onSubmit={(event) => handleSubmit(event)}
           className="flex flex-col gap-4 bg-custom1 rounded-xl px-10 py-9"
