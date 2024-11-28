@@ -23,6 +23,7 @@ export default function Register() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (handleValidation()) {
+      console.log("Inside teh validation form")
       const { username, password, confirmPassword, email } = values;
       const { data } = axios.post(registerRoute, {
         username,
